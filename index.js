@@ -22,7 +22,7 @@ async function main() {
 
   let response, exchageRateUrl;
   let country = COUNTRY.split(" ");
-  let countryUrl = "&symbol=";
+  let countryUrl = "&symbols=";
   for (const value of country) {
     countryUrl += value + ",";
   }
