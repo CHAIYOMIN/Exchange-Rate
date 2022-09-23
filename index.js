@@ -61,7 +61,7 @@ async function updateGist(exchage) {
       files: {
         [filename]: {
           filename: `Exchange Rate - ${BASE} base`,
-          content: wrapAnsi(exchage, 20, { hard: true })
+          content: exchage.join("\n")
         }
       }
     });
