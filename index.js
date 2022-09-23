@@ -4,7 +4,12 @@ const axios = require("axios");
 const wrapAnsi = require("wrap-ansi");
 const EXCHANE_RATE_URL = "https://api.exchangerate.host/latest";
 
-const { GIST_ID: gistId, GH_TOKEN: githubToken, BASE: BASE } = process.env;
+const {
+  GIST_ID: gistId,
+  GH_TOKEN: githubToken,
+  BASE: BASE,
+  COUNTRY: COUNTRY
+} = process.env;
 
 const octokit = new Octokit({
   auth: `token ${githubToken}`
@@ -16,16 +21,27 @@ async function main() {
   }
 
   let response, exchageRateUrl;
+  let country = COUNTRY.split(" ");
+  let countryUrl = "&symbol=";
+  for (const value of country) {
+    countryUrl += value + ",";
+  }
+  countryUrl = countryUrl.slice(0, -1);
+
   if (BASE) {
-    exchageRateUrl = `${EXCHANE_RATE_URL}?base=${BASE}`;
+    exchageRateUrl = `${EXCHANE_RATE_URL}?base=${BASE}${countryUrl}`;
   } else {
-    exchageRateUrl = `${EXCHANE_RATE_URL}?base=USD`;
+    exchageRateUrl = `${EXCHANE_RATE_URL}?base=USD${countryUrl}`;
   }
 
   response = await axios.get(exchageRateUrl);
 
-  const exchage = response.data.rates;
-  await updateGist(exchage);
+  const exchageKeys = Object.keys(response.data.rates);
+  let respone = [];
+  for (const value of exchageKeys) {
+    respone.push([value + ":" + exchange[value]]);
+  }
+  await updateGist(respone);
 }
 
 async function updateGist(exchage) {

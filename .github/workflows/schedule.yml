@@ -13,3 +13,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GIST_ID: 7001fb269abd6c36cae09ec5a562de88
+          COUNTRY: "JPY TWD AUD CNY GBP"
