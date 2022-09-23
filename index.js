@@ -11,7 +11,7 @@ const octokit = new Octokit({
 });
 
 async function main() {
-  if (!GIST_ID || !GH_TOKEN) {
+  if (!gistId || !githubToken) {
     console.error("gist ID or github token not found");
   }
 
