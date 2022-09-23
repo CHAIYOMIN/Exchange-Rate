@@ -19,7 +19,7 @@ async function main() {
   if (BASE) {
     exchageRateUrl = `${EXCHANE_RATE_URL}?base=${BASE}`;
   } else {
-    exchageRateUrl = `${EXCHANE_RATE_URL}?base=${USD}`;
+    exchageRateUrl = `${EXCHANE_RATE_URL}?base=USD`;
   }
 
   response = await axios.get(exchageRateUrl);
