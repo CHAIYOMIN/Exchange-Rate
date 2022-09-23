@@ -36,7 +36,8 @@ async function main() {
 
   response = await axios.get(exchageRateUrl);
 
-  const exchageKeys = Object.keys(response.data.rates);
+  const exchange = response.data.rates;
+  const exchageKeys = Object.keys(exchange);
   let respone = [];
   for (const value of exchageKeys) {
     respone.push([value + ":" + exchange[value]]);
