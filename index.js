@@ -10,6 +10,8 @@ const {
   COUNTRY: COUNTRY
 } = process.env;
 
+const base = BASE ? BASE : "USD"
+
 const octokit = new Octokit({
   auth: `token ${githubToken}`
 });
@@ -19,21 +21,16 @@ async function main() {
     console.error("gist ID or github token not found");
   }
 
-  let response, exchangeRateUrl;
-  let country = COUNTRY.split(" ");
+  const country = COUNTRY.split(" ");
   let countryUrl = "&symbols=";
   for (const value of country) {
     countryUrl += value + ",";
   }
   countryUrl = countryUrl.slice(0, -1);
 
-  if (BASE) {
-    exchangeRateUrl = `${EXCHANGE_RATE_URL}?base=${BASE}${countryUrl}`;
-  } else {
-    exchangeRateUrl = `${EXCHANGE_RATE_URL}?base=USD${countryUrl}`;
-  }
+  const exchangeRateUrl = `${EXCHANGE_RATE_URL}?base=${BASE}${countryUrl}`;
 
-  response = await axios.get(exchangeRateUrl);
+  const response = await axios.get(exchangeRateUrl);
 
   const exchange = response.data.rates;
   const exchangeKeys = Object.keys(exchange);
