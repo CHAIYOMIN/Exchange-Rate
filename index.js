@@ -1,8 +1,7 @@
 require("dotenv").config();
 const Octokit = require("@octokit/rest");
 const axios = require("axios");
-const wrapAnsi = require("wrap-ansi");
-const EXCHANE_RATE_URL = "https://api.exchangerate.host/latest";
+const EXCHANGE_RATE_URL = "https://api.exchangerate.host/latest";
 
 const {
   GIST_ID: gistId,
@@ -20,7 +19,7 @@ async function main() {
     console.error("gist ID or github token not found");
   }
 
-  let response, exchageRateUrl;
+  let response, exchangeRateUrl;
   let country = COUNTRY.split(" ");
   let countryUrl = "&symbols=";
   for (const value of country) {
@@ -29,12 +28,12 @@ async function main() {
   countryUrl = countryUrl.slice(0, -1);
 
   if (BASE) {
-    exchageRateUrl = `${EXCHANE_RATE_URL}?base=${BASE}${countryUrl}`;
+    exchangeRateUrl = `${EXCHANGE_RATE_URL}?base=${BASE}${countryUrl}`;
   } else {
-    exchageRateUrl = `${EXCHANE_RATE_URL}?base=USD${countryUrl}`;
+    exchangeRateUrl = `${EXCHANGE_RATE_URL}?base=USD${countryUrl}`;
   }
 
-  response = await axios.get(exchageRateUrl);
+  response = await axios.get(exchangeRateUrl);
 
   const exchange = response.data.rates;
   const exchageKeys = Object.keys(exchange);
@@ -45,7 +44,7 @@ async function main() {
   await updateGist(respone);
 }
 
-async function updateGist(exchage) {
+async function updateGist(exchange) {
   let gist;
   try {
     gist = await octokit.gists.get({ gist_id: gistId });
@@ -61,7 +60,7 @@ async function updateGist(exchage) {
       files: {
         [filename]: {
           filename: `Exchange Rate - ${BASE} base`,
-          content: exchage.join("\n")
+          content: exchange.join("\n")
         }
       }
     });

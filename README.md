@@ -19,10 +19,11 @@
 ### Project setup
 
 1. Fork this repo
-1. Edit the [environment variables](https://github.com/matchai/bird-box/blob/bcc05c5376710b231c9a81c102df6e51efcc6fc7/.github/workflows/schedule.yml#L13-L19) in `.github/workflows/schedule.yml`:
+1. Edit the [environment variables](https://github.com/CHAIYOMIN/exchange-rate/blob/master/.github/workflows/schedule.yml) in `.github/workflows/schedule.yml`:
 
    - **GIST_ID:** The ID portion from your gist url: `https://gist.github.com/CHAIYOMIN/`**`6d5f84419863089a167387da62dd7081`**.
    - **BASE:** The exchange rate base.(USD,EUR or etc...)
+   - **COUNTRY** The exchange rate currency country.
 
 1. Go to the repo **Settings > Secrets**
 1. Add the following environment variables:
