@@ -8,7 +8,6 @@
 ---
 
 > 📌✨ For more pinned-gist projects like this one, check out: https://github.com/matchai/awesome-pinned-gists
-
 ## Setup
 
 ### Prep work
@@ -28,3 +27,7 @@
 1. Go to the repo **Settings > Secrets**
 1. Add the following environment variables:
    - **GH_TOKEN:** The GitHub access token generated above.
+
+## Tools
+
+1. [exchange rate api](https://exchangerate.host/#/)
