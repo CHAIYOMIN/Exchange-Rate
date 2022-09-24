@@ -1,7 +1,7 @@
-![plot](./image/demo.png)
+![demo](./image/demo.png)
 
 <p align="center">
-  <h3 align="center">exchabge rate</h3>
+  <h3 align="center">exchange rate</h3>
   <p align="center">Update a pinned gist to contain the latest exchange rate</p>
 </p>
 

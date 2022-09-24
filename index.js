@@ -36,12 +36,12 @@ async function main() {
   response = await axios.get(exchangeRateUrl);
 
   const exchange = response.data.rates;
-  const exchageKeys = Object.keys(exchange);
-  let respone = [];
-  for (const value of exchageKeys) {
-    respone.push([value + ":" + exchange[value]]);
+  const exchangeKeys = Object.keys(exchange);
+  let exchangeData = [];
+  for (const value of exchangeKeys) {
+    exchangeData.push([value + ":" + exchange[value]]);
   }
-  await updateGist(respone);
+  await updateGist(exchangeData);
 }
 
 async function updateGist(exchange) {
